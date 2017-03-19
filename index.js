@@ -12,6 +12,9 @@ switch (command) {
   case 'reset':
     reset();
     break;
+  case 'remove':
+    remove();
+    break;
   case 'help':
   default:
     showHelp();
@@ -25,12 +28,18 @@ function splitStringByNewline(string) {
   });
 }
 
+// add to todo.txt
 function addContent() {
-  fs.appendFile('./todo.txt', `${process.argv[3]} \n`, (err) => {
+  fs.appendFile('./todo.txt', `${process.argv.slice(3).join(' ')} \n`, (err) => {
     if (err) throw err;
     console.log('The data is appended');
    });
 }
+
+// remove a content from todo.txt
+// function remove() {
+
+// }
 
 // Reset todo.txt
 function reset() {
